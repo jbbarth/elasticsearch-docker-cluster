@@ -41,20 +41,6 @@ EOF
 step Building docker image
 docker build --tag="$(whoami)/elasticsearch-full" .
 
-#spawn function
-spawn_es_node() {
-  node_name=$1
-  node_type=$2
-  port_9200=$3
-  port_9300=$4
-  docker run -d \
-    --name $node_name \
-    --publish $port_9200:9200 \
-    --publish $port_9300:9300 \
-    $(whoami)/elasticsearch-full \
-    /elasticsearch/bin/elasticsearch -Xms64m -Xmx64m -Des.config=/elasticsearch/config/elasticsearch-$node_type.yml
-}
-
 step Starting router node
 spawn_es_node router routing 9200 9300
 
