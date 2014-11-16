@@ -8,6 +8,12 @@ ES_VERSION=1.4.0
 #utilities
 source utils.sh
 
+#check environment
+step Checking docker environment
+which docker >/dev/null 2>/dev/null || { echo "docker is not installed. Please install docker first: https://docs.docker.com/installation/" >&2; exit 1; }
+docker ps >/dev/null 2>/dev/null || { echo "'docker ps' doesn't work. Maybe docker (or boot2docker/dvm on OSX) is not started?" >&2; exit 1; }
+docker ps -qa | xargs docker inspect -f "{{.Name}}" | grep -E '^/(data[123]|router)$' >/dev/null && { echo "It seems you already have containers named 'router', 'data1', 'data2', or 'data3'. Please ./cleanup first." >&2; exit 1; }
+
 #build our image
 step Generating Dockerfile
 cat << EOF > Dockerfile
