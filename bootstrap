@@ -75,13 +75,13 @@ sleep 15
 step Opening URLs
 esaddress=$(echo $DOCKER_HOST|perl -pe 's#^$#localhost#,s#tcp://(.*?):.*#$1#')
 set +e
-sleep 0.1; open http://$esaddress:9200/_plugin/head/
-sleep 0.1; open http://$esaddress:9200/_plugin/paramedic/
-sleep 0.1; open http://$esaddress:9200/_plugin/kopf/
-sleep 0.1; open http://$esaddress:9200/_plugin/bigdesk/
-sleep 0.1; open http://$esaddress:9200/_plugin/whatson/
-sleep 0.1; open http://$esaddress:9200/_plugin/HQ/
-sleep 0.1; open http://$esaddress:9200/_plugin/segmentspy/
-sleep 0.1; open http://$esaddress:9200/_plugin/elastic-hammer/
-sleep 0.1; open http://$esaddress:9200/_plugin/inquisitor/
+open_url http://$esaddress:9200/_plugin/head/
+open_url http://$esaddress:9200/_plugin/paramedic/
+open_url http://$esaddress:9200/_plugin/kopf/
+open_url http://$esaddress:9200/_plugin/bigdesk/
+open_url http://$esaddress:9200/_plugin/whatson/
+open_url http://$esaddress:9200/_plugin/HQ/
+open_url http://$esaddress:9200/_plugin/segmentspy/
+open_url http://$esaddress:9200/_plugin/elastic-hammer/
+open_url http://$esaddress:9200/_plugin/inquisitor/
 set -e
