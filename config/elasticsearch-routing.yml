@@ -1,0 +1,38 @@
+###bootstrap:
+###  mlockall: true
+cluster:
+  name: robots
+discovery:
+  zen:
+    minimum_master_nodes: 1
+gateway:
+  expected_nodes: 4
+  recover_after_nodes: 4
+  recover_after_time: 5m
+http:
+  max_content_length: 100mb
+index:
+  query:
+    bool:
+      max_clause_count: 1000000
+  refresh_interval: 300
+  store:
+    type: mmapfs
+indices:
+  fielddata:
+    cache:
+      expire: 10m
+      size: 30%
+  memory:
+    index_buffer_size: 10%
+network:
+  host: 0.0.0.0
+node:
+  data: false
+  master: true
+  #name: something
+path:
+  data: /data/data
+  logs: /data/log
+  plugins: /elasticsearch/plugins
+  work: /data/work

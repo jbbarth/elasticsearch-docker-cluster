@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#utilities
+source utils.sh
+stop_and_clean() {
+  step Stopping container $1
+  docker stop $1
+  step Removing container $1
+  docker rm $1
+}
+
+#cleanup
+stop_and_clean data1
+stop_and_clean data2
+stop_and_clean data3
+stop_and_clean router
